@@ -90,11 +90,6 @@ if ! git fetch; then
     exit 1
 fi
 
-# Check if there are any changes
-if [[ $(git rev-list HEAD...origin/"$current_branch" --count) -eq 0 ]]; then
-    echo -e "${GREEN}Repository is already up-to-date. Do not run git pull before this script. Exiting...${RESET}"
-    exit 0
-fi
 echo -e "${CYAN}Excluding files and folders that remain untouched:${RESET} ${excludes[@]}"
 
 # Then check which files have been customized by the user since the last update to preserve user configurations
