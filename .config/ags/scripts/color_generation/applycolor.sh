@@ -193,12 +193,18 @@ apply_qt() {
   python "$CONFIG_DIR/scripts/kvantum/changeAdwColors.py" # apply config colors
 }
 
+apply_ultragear() {
+    # Set color no. 4 of LG UltraGear monitor's LED ring to $primary_paletteKeyColor
+    "$HOME/bin/lg-ultragear-color" set 4 "${colorvalues[2]:1}"
+}
+
 colornames=$(cat $STATE_DIR/scss/_material.scss | cut -d: -f1)
 colorstrings=$(cat $STATE_DIR/scss/_material.scss | cut -d: -f2 | cut -d ' ' -f2 | cut -d ";" -f1)
 IFS=$'\n'
 colorlist=($colornames)     # Array of color names
 colorvalues=($colorstrings) # Array of color values
 
+apply_ultragear &
 apply_ags &
 apply_ags_sourceview &
 apply_hyprland &
